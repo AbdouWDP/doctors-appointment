@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat components.json)",
+      "Bash(cat vite.config.js)",
+      "Bash(cat jsconfig.json)",
+      "Bash(cat tsconfig.json)",
+      "Bash(npx shadcn@latest add input label checkbox card separator avatar badge navigation-menu --yes)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(curl -s http://localhost:5173/ -o /dev/null -w \"%{http_code}\\\\n\")",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx shadcn@latest add progress dropdown-menu --yes)"
+    ]
+  }
+}
