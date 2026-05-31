@@ -16,11 +16,15 @@ import { Button } from "@/components/ui/button";
 
 const NAV_ITEMS = [
   { label: "Dashboard", icon: SquaresFourIcon, to: "/dashboard", end: true },
-  { label: "Appointments", icon: CalendarCheckIcon, to: "/dashboard/appointments", badge: "8" },
+  {
+    label: "Appointments",
+    icon: CalendarCheckIcon,
+    to: "/dashboard/appointments",
+    badge: "8",
+  },
   { label: "Doctors", icon: StethoscopeIcon, to: "/dashboard/doctors" },
   { label: "Patients", icon: UsersThreeIcon, to: "/dashboard/patients" },
   { label: "Analytics", icon: ChartLineUpIcon, to: "/dashboard/analytics" },
-  { label: "Messages", icon: ChatCircleIcon, to: "/dashboard/messages", badge: "3" },
 ];
 
 const SECONDARY_ITEMS = [
@@ -88,7 +92,9 @@ function AppSidebar({ className, brandName = "MediCare", ...props }) {
 
       <div className="flex flex-col gap-4">
         <div className="rounded-2xl bg-primary/10 p-4">
-          <p className="text-sm font-semibold text-foreground">New appointment</p>
+          <p className="text-sm font-semibold text-foreground">
+            New appointment
+          </p>
           <p className="mt-1 text-xs text-muted-foreground">
             Book a slot for a patient in a few clicks.
           </p>
