@@ -5,7 +5,6 @@ import {
   StethoscopeIcon,
   UsersThreeIcon,
   ChartLineUpIcon,
-  ChatCircleIcon,
   GearIcon,
   LifebuoyIcon,
   PlusIcon,

@@ -18,13 +18,11 @@ export default function App() {
         <Route path="login" element={<LoginForm />} />
         <Route path="register" element={<RegisterForm />} />
       </Route>
-      <Route path="/dashboard" element={<DashboardOverviewPage />}>
-        {/* <Route index element={<Navigate to="/dashboard" replace />} /> */}
-        <Route path="/dashboard/appointments" element={<AppointmentsPage />} />
-        <Route path="/dashboard/doctors" element={<DoctorsPage />} />
-        <Route path="/dashboard/patients" element={<PatientsPage />} />
-        <Route path="/dashboard/analytics" element={<AnalyticsPage />} />
-      </Route>
+      <Route path="/dashboard" element={<DashboardOverviewPage />} />
+      <Route path="/dashboard/appointments" element={<AppointmentsPage />} />
+      <Route path="/dashboard/doctors" element={<DoctorsPage />} />
+      <Route path="/dashboard/patients" element={<PatientsPage />} />
+      <Route path="/dashboard/analytics" element={<AnalyticsPage />} />
     </Routes>
   );
 }
