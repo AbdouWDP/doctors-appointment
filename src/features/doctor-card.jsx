@@ -1,5 +1,4 @@
 import {
-  UserIcon,
   LinkedinLogoIcon,
   InstagramLogoIcon,
   XLogoIcon,
@@ -9,13 +8,20 @@ import {
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 
-function DoctorCard({ className, name, role, featured = false, ...props }) {
+function DoctorCard({
+  className,
+  name,
+  role,
+  image,
+  featured = false,
+  ...props
+}) {
   return (
     <Card
       data-slot="doctor-card"
       data-featured={featured}
       className={cn(
-        "gap-0 rounded-3xl p-0 ring-0 data-[featured=true]:bg-violet-200",
+        "gap-0 rounded-3xl p-0 ring-0 data-[featured=true]:bg-violet-200 hover:shadow-sm transition-shadow duration-300",
         className,
       )}
       {...props}
@@ -24,7 +30,7 @@ function DoctorCard({ className, name, role, featured = false, ...props }) {
         aria-hidden="true"
         className="flex aspect-4/5 items-center justify-center bg-muted"
       >
-        <UserIcon weight="fill" className="size-20 text-muted-foreground/40" />
+        <img src={image} alt={name} className="w-full h-full object-cover" />
       </div>
       <div className="flex flex-col items-center gap-2 p-4 text-center">
         <h3 className="font-heading text-base font-semibold text-foreground">

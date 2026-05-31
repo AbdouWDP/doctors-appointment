@@ -50,12 +50,15 @@ function BenefitsSection({ className, ...props }) {
           title="Online global service we provide form any country"
           compact
         />
-        <Card className="justify-between rounded-3xl bg-gradient-to-br from-violet-300 to-violet-200 ring-0">
+        <Card className="justify-between rounded-3xl bg-linear-to-br from-violet-300 to-violet-200 ring-0">
           <div className="flex h-full flex-col justify-between gap-6 px-5">
             <p className="font-heading text-lg font-semibold text-violet-950">
               Explore our more amazing services
             </p>
-            <Button size="lg" className="w-fit rounded-full bg-card text-sm text-foreground hover:bg-card/80">
+            <Button
+              size="lg"
+              className="w-fit rounded-full bg-card text-sm text-foreground hover:bg-card/80"
+            >
               Explore more
               <ArrowRightIcon />
             </Button>
@@ -76,7 +79,12 @@ function FeatureCard({ icon: Icon, title, description, compact = false }) {
         >
           <Icon weight="bold" className="size-5" />
         </span>
-        <h3 className={cn("font-heading font-semibold text-foreground", compact ? "text-base" : "text-lg")}>
+        <h3
+          className={cn(
+            "font-heading font-semibold text-foreground",
+            compact ? "text-base" : "text-lg",
+          )}
+        >
           {title}
         </h3>
         {description ? (

@@ -14,14 +14,13 @@ function AuthShowcase({ className, ...props }) {
       )}
       {...props}
     >
-      <span
-        aria-hidden="true"
-        className="absolute right-8 top-8 inline-flex size-16 items-center justify-center rounded-2xl bg-card text-foreground shadow-lg ring-1 ring-foreground/10"
-      >
-        <SparkleIcon weight="fill" className="size-8" />
-      </span>
-
-      <Card className="w-full max-w-md translate-x-6 rounded-xl">
+      <Card className="w-md translate-x-6 rounded-xl relative overflow-visible">
+        <span
+          aria-hidden="true"
+          className="absolute right-0 translate-x-1/2 -top-8 inline-flex size-16 items-center justify-center rounded-2xl bg-card text-foreground shadow-lg ring-1 ring-foreground/10"
+        >
+          <SparkleIcon weight="fill" className="size-8" />
+        </span>
         <div className="flex flex-col gap-4 px-5">
           <div className="flex items-center justify-between">
             <span className="font-heading text-sm font-semibold">
@@ -50,27 +49,26 @@ function AuthShowcase({ className, ...props }) {
             ))}
           </div>
         </div>
-      </Card>
-
-      <Card
-        className="absolute -bottom-2 left-2 w-56 rounded-xl shadow-xl"
-        size="sm"
-      >
-        <div className="flex flex-col gap-2 px-4">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">Total sales</span>
-          </div>
-          <div className="flex items-center justify-between gap-2">
-            <span className="font-heading text-xl font-bold">$18.200</span>
-            <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600">
-              <TrendUpIcon className="size-3" />
-              10.2%
+        <Card
+          className="absolute -bottom-11 -left-1/2 translate-x-1/2 w-56 rounded-xl shadow-xl"
+          size="sm"
+        >
+          <div className="flex flex-col gap-2 px-4">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-muted-foreground">Total sales</span>
+            </div>
+            <div className="flex items-center justify-between gap-2">
+              <span className="font-heading text-xl font-bold">$18.200</span>
+              <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600">
+                <TrendUpIcon className="size-3" />
+                10.2%
+              </span>
+            </div>
+            <span className="text-[10px] text-muted-foreground">
+              vs last month
             </span>
           </div>
-          <span className="text-[10px] text-muted-foreground">
-            vs last month
-          </span>
-        </div>
+        </Card>
       </Card>
     </div>
   );

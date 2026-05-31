@@ -2,11 +2,7 @@ import {
   CalendarCheckIcon,
   DownloadSimpleIcon,
   StarIcon,
-  EyeIcon,
-  HeartIcon,
-  ToothIcon,
 } from "@phosphor-icons/react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -75,7 +71,7 @@ function HeroSection({ className, ...props }) {
           </div>
         </div>
 
-        <div className="relative flex min-h-80 flex-col justify-between overflow-hidden rounded-3xl bg-muted p-6">
+        <div className="relative flex min-h-80 flex-col justify-between overflow-hidden rounded-3xl bg-muted p-6 bg-[url(https://images.pexels.com/photos/6010792/pexels-photo-6010792.jpeg)] bg-cover bg-no-repeat">
           <div className="flex items-start justify-between">
             <Badge className="rounded-full bg-card/80 text-foreground">
               <span aria-hidden="true">↗</span> 20%
@@ -96,29 +92,12 @@ function HeroSection({ className, ...props }) {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <span className="font-heading text-3xl font-bold text-foreground">
-              90 mg/dL
-            </span>
-            <div className="flex flex-wrap gap-2">
-              <Badge className="rounded-full bg-card/80 text-foreground">
-                <EyeIcon /> Eye Consultation
-              </Badge>
-              <Badge className="rounded-full bg-card/80 text-foreground">
-                <HeartIcon /> Psycology
-              </Badge>
-              <Badge className="rounded-full bg-card/80 text-foreground">
-                <ToothIcon /> Dental Treatment
-              </Badge>
-            </div>
-          </div>
-
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
             <Badge className="rounded-full bg-card/80 text-foreground">
               <StarIcon weight="fill" className="text-amber-500" />
               4k+ Happy clients with top reviews
             </Badge>
-            <p className="max-w-56 text-xs text-muted-foreground">
+            <p className="max-w-56 text-xs text-muted">
               We are ready to serve you with pleasure and fast response
             </p>
           </div>

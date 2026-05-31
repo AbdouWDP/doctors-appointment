@@ -4,10 +4,7 @@ function AuthLayout({ className, children, aside, ...props }) {
   return (
     <div
       data-slot="auth-layout"
-      className={cn(
-        "grid min-h-svh bg-background lg:grid-cols-2",
-        className
-      )}
+      className={cn("grid min-h-svh bg-background lg:grid-cols-2", className)}
       {...props}
     >
       <main
@@ -19,7 +16,7 @@ function AuthLayout({ className, children, aside, ...props }) {
       <aside
         data-slot="auth-layout-aside"
         aria-hidden="true"
-        className="relative hidden overflow-hidden bg-violet-100 p-10 lg:block"
+        className="relative hidden overflow-hidden bg-sidebar p-10 lg:block"
       >
         {aside}
       </aside>

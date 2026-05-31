@@ -1,7 +1,7 @@
 import {
   FunnelSimpleIcon,
   ArrowsDownUpIcon,
-  EyeSlashIcon,
+  CalendarBlankIcon,
   CaretDownIcon,
   DotsThreeIcon,
   PlusIcon,
@@ -10,13 +10,18 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-function TaskToolbar({ className, ...props }) {
+function AppointmentToolbar({ className, ...props }) {
   return (
     <div
-      data-slot="task-toolbar"
+      data-slot="appointment-toolbar"
       className={cn("flex items-center gap-2", className)}
       {...props}
     >
+      <Button variant="outline" size="lg" className="rounded-lg text-sm">
+        <CalendarBlankIcon />
+        Today
+        <CaretDownIcon />
+      </Button>
       <Button variant="outline" size="lg" className="rounded-lg text-sm">
         <FunnelSimpleIcon />
         Filter
@@ -26,20 +31,21 @@ function TaskToolbar({ className, ...props }) {
         <ArrowsDownUpIcon />
         Sort
       </Button>
-      <Button variant="outline" size="lg" className="rounded-lg text-sm">
-        <EyeSlashIcon />
-        Hide
-      </Button>
-      <Button variant="outline" size="icon-lg" aria-label="More options" className="rounded-lg">
+      <Button
+        variant="outline"
+        size="icon-lg"
+        aria-label="More options"
+        className="rounded-lg"
+      >
         <DotsThreeIcon weight="bold" />
       </Button>
 
       <Button size="lg" className="ml-auto rounded-lg text-sm">
         <PlusIcon />
-        New Project
+        New Appointment
       </Button>
     </div>
   );
 }
 
-export { TaskToolbar };
+export { AppointmentToolbar };

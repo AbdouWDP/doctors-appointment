@@ -2,21 +2,28 @@ import {
   EyeIcon,
   GoogleLogoIcon,
   FacebookLogoIcon,
+  EyeSlashIcon,
 } from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
 import { BrandLogo } from "@/features/brand-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router";
 import { object, string } from "yup";
+import {
+  FieldSet,
+  FieldGroup,
+  FieldLabel,
+  Field,
+  FieldError,
+} from "@/components/ui/field";
+import { useState } from "react";
 
 // yup validation
 
-const yupInstance = object({
+const registerSchema = object({
   username: string().min(4).max(28).trim().required("Username is required"),
   email: string()
     .email("Email is not valid")
@@ -28,11 +35,52 @@ const yupInstance = object({
     .required("Password is required"),
 });
 
+const initErrors = {
+  username: null,
+  email: null,
+  password: null,
+};
+
 function RegisterForm({ className, brandName = "Aivox", ...props }) {
+  const [errors, setErrors] = useState(initErrors);
+  const [passwordType, setPasswordType] = useState("password");
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const validation = await registerSchema.validate(data, {
+        abortEarly: false,
+      });
+
+      setErrors(initErrors);
+
+      console.log(validation);
+    } catch (err) {
+      const { inner } = err;
+
+      let schemaErrors = {};
+
+      for (let error of inner) {
+        schemaErrors = {
+          ...initErrors,
+          ...schemaErrors,
+          [error.path]: error.message,
+        };
+      }
+
+      setErrors(schemaErrors);
+    }
+  };
+
   return (
     <form
       data-slot="login-form"
       className={cn("flex flex-col gap-6", className)}
+      method="post"
+      onSubmit={submitHandler}
       {...props}
     >
       <div className="flex flex-col items-center gap-4 text-center">
@@ -48,76 +96,67 @@ function RegisterForm({ className, brandName = "Aivox", ...props }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="username" className="text-sm font-medium">
-            Username
-          </Label>
-          <Input
-            id="username"
-            name="username"
-            type="username"
-            autoComplete="username"
-            placeholder="Enter your username"
-            className="h-11 rounded-lg"
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="email" className="text-sm font-medium">
-            Email
-          </Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            placeholder="Enter your email"
-            className="h-11 rounded-lg"
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="password" className="text-sm font-medium">
-            Password
-          </Label>
-          <div className="relative">
+      <FieldSet>
+        <FieldGroup className="gap-4">
+          <Field>
+            <FieldLabel htmlFor="username" className="text-sm font-medium">
+              Username
+            </FieldLabel>
             <Input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              placeholder="Enter your password"
-              className="h-11 rounded-lg pr-10"
+              id="username"
+              name="username"
+              type="username"
+              placeholder="Enter your username"
+              aria-invalid={errors.username !== null}
             />
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon-sm"
-              aria-label="Toggle password visibility"
-              className="absolute inset-y-0 right-1 my-auto rounded-md text-muted-foreground"
-            >
-              <EyeIcon />
-            </Button>
-          </div>
-        </div>
+            <FieldError>{errors.username}</FieldError>
+          </Field>
 
-        <div className="flex items-center justify-between">
-          <Label
-            htmlFor="remember"
-            className="text-sm font-normal text-muted-foreground"
-          >
-            <Checkbox id="remember" name="remember" />
-            Keep me sign-in to {brandName}
-          </Label>
-          <a
-            href="#"
-            className="text-sm font-semibold text-foreground underline-offset-4 hover:underline"
-          >
-            Forgot password?
-          </a>
-        </div>
-      </div>
+          <Field>
+            <FieldLabel htmlFor="email" className="text-sm font-medium">
+              Email
+            </FieldLabel>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your Email"
+              aria-invalid={errors.email !== null}
+            />
+            <FieldError>{errors.email}</FieldError>
+          </Field>
+
+          <Field>
+            <FieldLabel htmlFor="password" className="text-sm font-medium">
+              Password
+            </FieldLabel>
+            <div className="relative">
+              <Input
+                id="password"
+                name="password"
+                type={passwordType}
+                placeholder="Enter your password"
+                aria-invalid={errors.password !== null}
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-sm"
+                aria-label="Toggle password visibility"
+                className="absolute inset-y-0 right-1 my-auto rounded-md text-muted-foreground"
+                onClick={() =>
+                  passwordType === "password"
+                    ? setPasswordType("text")
+                    : setPasswordType("password")
+                }
+              >
+                {passwordType === "password" ? <EyeIcon /> : <EyeSlashIcon />}
+              </Button>
+            </div>
+            <FieldError>{errors.password}</FieldError>
+          </Field>
+        </FieldGroup>
+      </FieldSet>
 
       <Button
         type="submit"
