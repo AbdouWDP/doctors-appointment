@@ -15,13 +15,44 @@ import { DoctorCard } from "@/features/doctor-card";
 import { DOCTORS } from "@/pages/dashboard/data";
 
 const STATS = [
-  { label: "Total Doctors", value: "32", delta: "3", trend: "up", icon: StethoscopeIcon },
-  { label: "On Duty Now", value: "18", delta: "4", trend: "up", icon: UserCheckIcon },
-  { label: "Avg. Rating", value: "4.8", delta: "0.2", trend: "up", icon: StarIcon },
-  { label: "Avg. Wait", value: "12 min", delta: "3 min", trend: "down", icon: ClockIcon },
+  {
+    label: "Total Doctors",
+    value: "32",
+    delta: "3",
+    trend: "up",
+    icon: StethoscopeIcon,
+  },
+  {
+    label: "On Duty Now",
+    value: "18",
+    delta: "4",
+    trend: "up",
+    icon: UserCheckIcon,
+  },
+  {
+    label: "Avg. Rating",
+    value: "4.8",
+    delta: "0.2",
+    trend: "up",
+    icon: StarIcon,
+  },
+  {
+    label: "Avg. Wait",
+    value: "12 min",
+    delta: "3 min",
+    trend: "down",
+    icon: ClockIcon,
+  },
 ];
 
-const SPECIALTIES = ["All", "Cardiology", "Neurology", "Pediatrics", "Orthopedics", "Dermatology"];
+const SPECIALTIES = [
+  "All",
+  "Cardiology",
+  "Neurology",
+  "Pediatrics",
+  "Orthopedics",
+  "Dermatology",
+];
 
 export default function DoctorsPage() {
   return (
@@ -47,7 +78,11 @@ export default function DoctorsPage() {
               {specialty}
             </Button>
           ))}
-          <Button variant="outline" size="lg" className="ml-auto rounded-lg text-sm">
+          <Button
+            variant="outline"
+            size="lg"
+            className="ml-auto rounded-lg text-sm"
+          >
             <FunnelSimpleIcon />
             Filter
             <CaretDownIcon />
@@ -60,7 +95,7 @@ export default function DoctorsPage() {
 
         <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 xl:grid-cols-5">
           {DOCTORS.map((doctor) => (
-            <li key={doctor.name}>
+            <li key={doctor.id}>
               <DoctorCard {...doctor} />
             </li>
           ))}

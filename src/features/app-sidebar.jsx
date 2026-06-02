@@ -12,6 +12,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import AppointmentModal from "../pages/dashboard/appointments/components/appointment-modal";
 
 const NAV_ITEMS = [
   { label: "Dashboard", icon: SquaresFourIcon, to: "/dashboard", end: true },
@@ -36,6 +37,7 @@ function NavItem({ to, end, icon: Icon, label, badge }) {
     <NavLink
       to={to}
       end={end}
+      state={{ prev: to }}
       className="group/nav inline-flex items-center gap-3 rounded-xl px-2.5 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary"
     >
       {({ isActive }) => (
@@ -97,10 +99,14 @@ function AppSidebar({ className, brandName = "MediCare", ...props }) {
           <p className="mt-1 text-xs text-muted-foreground">
             Book a slot for a patient in a few clicks.
           </p>
-          <Button size="lg" className="mt-3 w-full rounded-lg text-sm">
-            <PlusIcon />
-            Add Appointment
-          </Button>
+          <AppointmentModal
+            trigger={
+              <Button size="lg" className="mt-3 w-full rounded-lg text-sm">
+                <PlusIcon />
+                Add Appointment
+              </Button>
+            }
+          />
         </div>
 
         <div className="flex flex-col gap-1 border-t border-border pt-4">

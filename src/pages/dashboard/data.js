@@ -65,33 +65,38 @@ export const APPOINTMENTS = [
 
 export const DOCTORS = [
   {
-    name: "Dr. Andrew Bennett",
-    role: "Cardiology · 12 yrs",
+    id: "1",
+    name: "Andrew Bennett",
+    role: "Cardiology",
     image:
       "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=500&q=80",
   },
   {
-    name: "Dr. Shelly Moore",
-    role: "Dermatology · 8 yrs",
+    id: "2",
+    name: "Shelly Moore",
+    role: "Dermatology",
     image:
       "https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&w=500&q=80",
   },
   {
-    name: "Dr. Kullok Dash",
-    role: "Pediatrics · 10 yrs",
+    id: "3",
+    name: "Kullok Dash",
+    role: "Pediatrics",
     featured: true,
     image:
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=500&q=80",
   },
   {
-    name: "Dr. Martin Reed",
-    role: "Neurology · 15 yrs",
+    id: "4",
+    name: "Martin Reed",
+    role: "Neurology",
     image:
       "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=500&q=80",
   },
   {
-    name: "Dr. Jhon Davis",
-    role: "Orthopedics · 9 yrs",
+    id: "5",
+    name: "Jhon Davis",
+    role: "Orthopedics",
     image:
       "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&q=80",
   },
@@ -184,9 +189,34 @@ export const DEPARTMENTS = [
 ];
 
 export const TODAY_SCHEDULE = [
-  { time: "09:00", patient: "Olivia Carter", reason: "Heart check-up", tone: "emerald" },
-  { time: "09:45", patient: "Liam Walker", reason: "Allergy follow-up", tone: "amber" },
-  { time: "10:30", patient: "Emma Thompson", reason: "Migraine consult", tone: "emerald" },
-  { time: "11:15", patient: "Noah Mitchell", reason: "Post-surgery review", tone: "rose" },
-  { time: "01:00", patient: "Ava Robinson", reason: "Vaccination", tone: "emerald" },
+  {
+    time: "09:00",
+    patient: "Olivia Carter",
+    reason: "Heart check-up",
+    tone: "emerald",
+  },
+  {
+    time: "09:45",
+    patient: "Liam Walker",
+    reason: "Allergy follow-up",
+    tone: "amber",
+  },
+  {
+    time: "10:30",
+    patient: "Emma Thompson",
+    reason: "Migraine consult",
+    tone: "emerald",
+  },
+  {
+    time: "11:15",
+    patient: "Noah Mitchell",
+    reason: "Post-surgery review",
+    tone: "rose",
+  },
+  {
+    time: "01:00",
+    patient: "Ava Robinson",
+    reason: "Vaccination",
+    tone: "emerald",
+  },
 ];

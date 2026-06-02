@@ -9,6 +9,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import AppointmentModal from "../appointments/components/appointment-modal";
 
 function AppointmentToolbar({ className, ...props }) {
   return (
@@ -40,10 +41,14 @@ function AppointmentToolbar({ className, ...props }) {
         <DotsThreeIcon weight="bold" />
       </Button>
 
-      <Button size="lg" className="ml-auto rounded-lg text-sm">
-        <PlusIcon />
-        New Appointment
-      </Button>
+      <AppointmentModal
+        trigger={
+          <Button size="lg" className="ml-auto rounded-lg text-sm">
+            <PlusIcon />
+            New Appointment
+          </Button>
+        }
+      />
     </div>
   );
 }

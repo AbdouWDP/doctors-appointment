@@ -17,10 +17,34 @@ import { PatientRow } from "@/features/patient-row";
 import { PATIENTS } from "@/pages/dashboard/data";
 
 const STATS = [
-  { label: "Total Patients", value: "1,294", delta: "5.2%", trend: "up", icon: UsersThreeIcon },
-  { label: "New This Month", value: "86", delta: "12%", trend: "up", icon: UserPlusIcon },
-  { label: "Admitted", value: "24", delta: "2", trend: "down", icon: HeartbeatIcon },
-  { label: "Appointments", value: "342", delta: "8%", trend: "up", icon: CalendarCheckIcon },
+  {
+    label: "Total Patients",
+    value: "1,294",
+    delta: "5.2%",
+    trend: "up",
+    icon: UsersThreeIcon,
+  },
+  {
+    label: "New This Month",
+    value: "86",
+    delta: "12%",
+    trend: "up",
+    icon: UserPlusIcon,
+  },
+  {
+    label: "Admitted",
+    value: "24",
+    delta: "2",
+    trend: "down",
+    icon: HeartbeatIcon,
+  },
+  {
+    label: "Appointments",
+    value: "342",
+    delta: "8%",
+    trend: "up",
+    icon: CalendarCheckIcon,
+  },
 ];
 
 export default function PatientsPage() {
@@ -41,12 +65,20 @@ export default function PatientsPage() {
           description="1,294 total records"
           action={
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="lg" className="rounded-lg text-sm">
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-lg text-sm"
+              >
                 <FunnelSimpleIcon />
                 Filter
                 <CaretDownIcon />
               </Button>
-              <Button variant="outline" size="lg" className="rounded-lg text-sm">
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-lg text-sm"
+              >
                 <ArrowsDownUpIcon />
                 Sort
               </Button>

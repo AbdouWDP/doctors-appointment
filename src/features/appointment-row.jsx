@@ -4,11 +4,19 @@ import {
   MapPinIcon,
   DotsThreeIcon,
 } from "@phosphor-icons/react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { StatusPill } from "@/features/status-pill";
+import AppointmentModal from "../pages/dashboard/appointments/components/appointment-modal";
 
 const MODE_ICON = {
   "In-person": MapPinIcon,
@@ -17,12 +25,13 @@ const MODE_ICON = {
 
 function AppointmentRow({
   className,
+  appointment_id,
   patient,
   avatar,
-  reason,
+  type,
   time,
   doctor,
-  specialty,
+  condition,
   mode = "In-person",
   status,
   statusTone = "neutral",
@@ -50,13 +59,15 @@ function AppointmentRow({
       </Avatar>
 
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-medium text-foreground">{patient}</p>
-        <p className="truncate text-xs text-muted-foreground">{reason}</p>
+        <p className="truncate text-sm font-medium text-foreground">
+          {patient}
+        </p>
+        <p className="truncate text-xs text-muted-foreground">{condition}</p>
       </div>
 
       <div className="hidden min-w-0 flex-1 flex-col md:flex">
         <p className="truncate text-sm font-medium text-foreground">{doctor}</p>
-        <p className="truncate text-xs text-muted-foreground">{specialty}</p>
+        <p className="truncate text-xs text-muted-foreground">{type}</p>
       </div>
 
       <span className="hidden items-center gap-1.5 text-xs whitespace-nowrap text-muted-foreground xl:inline-flex">
@@ -69,18 +80,37 @@ function AppointmentRow({
         {mode}
       </span>
 
-      <StatusPill tone={statusTone} dot className="hidden sm:inline-flex">
+      <StatusPill
+        status={status}
+        tone={statusTone}
+        dot
+        className="hidden sm:inline-flex"
+      >
         {status}
       </StatusPill>
 
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        aria-label="Appointment options"
-        className="rounded-full text-muted-foreground"
-      >
-        <DotsThreeIcon weight="bold" />
-      </Button>
+      <DropdownMenu className="w-fit">
+        <DropdownMenuTrigger>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label="Appointment options"
+            className="rounded-full text-muted-foreground"
+          >
+            <DotsThreeIcon weight="bold" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuGroup>
+            <AppointmentModal
+              trigger={<DropdownMenuItem>Edit</DropdownMenuItem>}
+              type="update"
+              appointment={{ patient }}
+            />
+            <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }

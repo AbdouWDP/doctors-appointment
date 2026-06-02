@@ -1,10 +1,19 @@
-import { MagnifyingGlassIcon, BellIcon, CaretDownIcon } from "@phosphor-icons/react";
+import {
+  MagnifyingGlassIcon,
+  BellIcon,
+  CaretDownIcon,
+} from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-function DashboardTopbar({ className, title = "Dashboard", subtitle, ...props }) {
+function DashboardTopbar({
+  className,
+  title = "Dashboard",
+  subtitle,
+  ...props
+}) {
   return (
     <header
       data-slot="dashboard-topbar"
@@ -21,16 +30,16 @@ function DashboardTopbar({ className, title = "Dashboard", subtitle, ...props })
       </div>
 
       <div className="relative mx-auto w-full max-w-xl">
-        <MagnifyingGlassIcon className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <label htmlFor="search">
+          <MagnifyingGlassIcon className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        </label>
         <Input
+          id="search"
           type="search"
           aria-label="Search patients, doctors or appointments"
           placeholder="Search patients, doctors or appointments"
           className="h-11 rounded-full bg-card pl-10 pr-16 text-sm"
         />
-        <kbd className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md bg-muted px-1.5 py-0.5 text-xs text-muted-foreground">
-          ⌘ F
-        </kbd>
       </div>
 
       <div className="flex items-center gap-4">
@@ -55,7 +64,9 @@ function DashboardTopbar({ className, title = "Dashboard", subtitle, ...props })
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
           <div className="hidden leading-tight sm:block">
-            <p className="text-sm font-medium text-foreground">Dr. Andrew Bennett</p>
+            <p className="text-sm font-medium text-foreground">
+              Dr. Andrew Bennett
+            </p>
             <p className="text-xs text-muted-foreground">Cardiologist</p>
           </div>
           <CaretDownIcon className="hidden size-4 text-muted-foreground sm:block" />

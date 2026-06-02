@@ -3,45 +3,107 @@ import {
   ClockCountdownIcon,
   CheckCircleIcon,
   XCircleIcon,
-  DotsThreeIcon,
 } from "@phosphor-icons/react";
 
 import { DashboardLayout } from "@/layouts/dashboard-layout";
-import { Button } from "@/components/ui/button";
 import { StatCard } from "@/features/stat-card";
 import { AppointmentRow } from "@/features/appointment-row";
 import { AppointmentToolbar } from "@/pages/dashboard/components/appointment-toolbar";
-import { APPOINTMENTS } from "@/pages/dashboard/data";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import appointments from "@/pages/dashboard/appointments/data.json";
+import { useState } from "react";
 
 const STATS = [
-  { label: "Total Today", value: "24", delta: "12%", trend: "up", icon: CalendarCheckIcon },
-  { label: "Pending", value: "6", delta: "2", trend: "up", icon: ClockCountdownIcon },
-  { label: "Confirmed", value: "15", delta: "8%", trend: "up", icon: CheckCircleIcon },
-  { label: "Cancelled", value: "3", delta: "1", trend: "down", icon: XCircleIcon },
+  {
+    label: "Total Today",
+    value: "24",
+    delta: "12%",
+    trend: "up",
+    icon: CalendarCheckIcon,
+  },
+  {
+    label: "Pending",
+    value: "6",
+    delta: "2",
+    trend: "up",
+    icon: ClockCountdownIcon,
+  },
+  {
+    label: "Confirmed",
+    value: "15",
+    delta: "8%",
+    trend: "up",
+    icon: CheckCircleIcon,
+  },
+  {
+    label: "Cancelled",
+    value: "3",
+    delta: "1",
+    trend: "down",
+    icon: XCircleIcon,
+  },
 ];
 
-const TODAY = APPOINTMENTS.slice(0, 3);
-const UPCOMING = APPOINTMENTS.slice(3);
-
-function GroupHeader({ label }) {
+function GroupHeader({ label, page, setPage, appointmentsLength }) {
   return (
     <div className="flex items-center justify-between px-1">
       <span className="text-xs font-medium tracking-wide text-muted-foreground">
         {label}
       </span>
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        aria-label="Group options"
-        className="rounded-full text-muted-foreground"
-      >
-        <DotsThreeIcon weight="bold" />
-      </Button>
+      <div>
+        <Pagination>
+          <PaginationContent>
+            {page > 1 && (
+              <PaginationItem>
+                <PaginationPrevious
+                  onClick={() => setPage(page - 1)}
+                  href="#appointments-rows"
+                />
+              </PaginationItem>
+            )}
+
+            {Array.from(
+              { length: Math.ceil(appointments.length / 5) },
+              (_, i) => i + 1,
+            ).map((item) => (
+              <PaginationItem>
+                <PaginationLink
+                  className="rounded-md"
+                  isActive={item === page}
+                  onClick={() => setPage(item)}
+                >
+                  {item}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+
+            {page < appointmentsLength && (
+              <PaginationItem>
+                <PaginationNext
+                  onClick={() => setPage(page + 1)}
+                  href="#appointments-rows"
+                />
+              </PaginationItem>
+            )}
+          </PaginationContent>
+        </Pagination>
+      </div>
     </div>
   );
 }
 
 export default function AppointmentsPage() {
+  const [page, setPage] = useState(1);
+
+  const newAppointments = appointments.slice(5 * (page - 1), 5 * page);
+
   return (
     <DashboardLayout
       title="Appointments"
@@ -57,14 +119,19 @@ export default function AppointmentsPage() {
         <AppointmentToolbar />
 
         <div className="flex flex-col gap-3">
-          <GroupHeader label="TODAY" />
-          {TODAY.map((appointment) => (
-            <AppointmentRow key={appointment.patient} {...appointment} />
-          ))}
-
-          <GroupHeader label="UPCOMING" />
-          {UPCOMING.map((appointment) => (
-            <AppointmentRow key={appointment.patient} {...appointment} />
+          <GroupHeader
+            label="Patients Schedule"
+            page={page}
+            setPage={setPage}
+            appointmentsLength={newAppointments.length}
+          />
+          {newAppointments.map((appointment) => (
+            <AppointmentRow
+              key={appointment.id}
+              {...appointment}
+              appointment_id={appointment.id}
+              id="appointments-rows"
+            />
           ))}
         </div>
       </div>

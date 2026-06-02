@@ -8,6 +8,7 @@ import PatientsPage from "@/pages/dashboard/patients";
 import AnalyticsPage from "@/pages/dashboard/analytics";
 import { LoginForm } from "./pages/auth/components/login-form";
 import { RegisterForm } from "./pages/auth/components/register-form";
+import Dashboard from "./pages/dashboard";
 
 export default function App() {
   return (
@@ -18,11 +19,15 @@ export default function App() {
         <Route path="login" element={<LoginForm />} />
         <Route path="register" element={<RegisterForm />} />
       </Route>
-      <Route path="/dashboard" element={<DashboardOverviewPage />} />
-      <Route path="/dashboard/appointments" element={<AppointmentsPage />} />
-      <Route path="/dashboard/doctors" element={<DoctorsPage />} />
-      <Route path="/dashboard/patients" element={<PatientsPage />} />
-      <Route path="/dashboard/analytics" element={<AnalyticsPage />} />
+
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route index element={<DashboardOverviewPage />} />
+        <Route path="appointments" element={<AppointmentsPage />} />
+        <Route path="doctors" element={<DoctorsPage />} />
+        <Route path="patients" element={<PatientsPage />} />
+        <Route path="analytics" element={<AnalyticsPage />} />
+      </Route>
     </Routes>
   );
 }
