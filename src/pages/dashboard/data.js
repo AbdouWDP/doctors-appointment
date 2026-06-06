@@ -188,6 +188,44 @@ export const DEPARTMENTS = [
   { label: "Dermatology", value: 9, tone: "bg-violet-500" },
 ];
 
+export const RECENT_ACTIVITY = [
+  {
+    id: 1,
+    type: "appointment",
+    title: "New appointment booked",
+    detail: "Olivia Carter with Dr. Bennett",
+    time: "5m ago",
+  },
+  {
+    id: 2,
+    type: "patient",
+    title: "New patient registered",
+    detail: "Liam Walker — #PT-1043",
+    time: "32m ago",
+  },
+  {
+    id: 3,
+    type: "confirmed",
+    title: "Appointment confirmed",
+    detail: "Emma Thompson — Neurology",
+    time: "1h ago",
+  },
+  {
+    id: 4,
+    type: "report",
+    title: "Lab report uploaded",
+    detail: "Noah Mitchell — Blood panel",
+    time: "2h ago",
+  },
+  {
+    id: 5,
+    type: "canceled",
+    title: "Appointment canceled",
+    detail: "Ava Robinson — Pediatrics",
+    time: "3h ago",
+  },
+];
+
 export const TODAY_SCHEDULE = [
   {
     time: "09:00",

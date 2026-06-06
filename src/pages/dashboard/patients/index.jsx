@@ -13,7 +13,8 @@ import { DashboardLayout } from "@/layouts/dashboard-layout";
 import { Button } from "@/components/ui/button";
 import { StatCard } from "@/features/stat-card";
 import { Panel } from "@/features/panel";
-import { PatientRow } from "@/features/patient-row";
+import { DataTable } from "@/features/data-table";
+import { patientColumns } from "@/pages/dashboard/patients/components/columns";
 import { PATIENTS } from "@/pages/dashboard/data";
 
 const STATS = [
@@ -65,20 +66,12 @@ export default function PatientsPage() {
           description="1,294 total records"
           action={
             <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-lg text-sm"
-              >
+              <Button variant="outline" size="lg" className="rounded-lg text-sm">
                 <FunnelSimpleIcon />
                 Filter
                 <CaretDownIcon />
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-lg text-sm"
-              >
+              <Button variant="outline" size="lg" className="rounded-lg text-sm">
                 <ArrowsDownUpIcon />
                 Sort
               </Button>
@@ -89,11 +82,11 @@ export default function PatientsPage() {
             </div>
           }
         >
-          <div className="flex flex-col gap-3">
-            {PATIENTS.map((patient) => (
-              <PatientRow key={patient.patientId} {...patient} />
-            ))}
-          </div>
+          <DataTable
+            columns={patientColumns}
+            data={PATIENTS}
+            className="border-0 px-0"
+          />
         </Panel>
       </div>
     </DashboardLayout>

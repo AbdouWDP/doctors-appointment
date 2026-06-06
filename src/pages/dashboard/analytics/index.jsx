@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { StatCard } from "@/features/stat-card";
 import { Panel } from "@/features/panel";
 import { BarChart } from "@/features/bar-chart";
+import { DistributionRow } from "@/pages/dashboard/analytics/components/distribution-row";
 import { WEEKLY_APPOINTMENTS, DEPARTMENTS } from "@/pages/dashboard/data";
 
 const STATS = [
@@ -27,23 +28,6 @@ const SATISFACTION = [
   { label: "Average", value: 9, tone: "bg-amber-500" },
   { label: "Poor", value: 3, tone: "bg-rose-500" },
 ];
-
-function DistributionRow({ label, value, tone }) {
-  return (
-    <li className="flex flex-col gap-1.5">
-      <div className="flex items-center justify-between text-xs">
-        <span className="inline-flex items-center gap-2 font-medium text-foreground">
-          <span className={`size-2 rounded-full ${tone}`} />
-          {label}
-        </span>
-        <span className="text-muted-foreground">{value}%</span>
-      </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
-        <div className={`h-full rounded-full ${tone}`} style={{ width: `${value}%` }} />
-      </div>
-    </li>
-  );
-}
 
 export default function AnalyticsPage() {
   return (

@@ -9,7 +9,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import AppointmentModal from "../appointments/components/appointment-modal";
+import AppointmentModal from "./appointment-modal";
 
 function AppointmentToolbar({ className, ...props }) {
   return (

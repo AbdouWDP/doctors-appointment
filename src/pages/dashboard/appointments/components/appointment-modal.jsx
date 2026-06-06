@@ -5,6 +5,8 @@ import {
   AlertDialogContent,
   AlertDialogFooter,
   AlertDialogTrigger,
+  AlertDialogTitle,
+  AlertDialogHeader,
 } from "@/components/ui/alert-dialog";
 import {
   Select,
@@ -31,12 +33,13 @@ export default function AppointmentModal({
 }) {
   const { patient } = appointment;
 
-  console.log(patient);
-
   return (
     <AlertDialog className={cn("p-10", className)} {...props}>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
       <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>MODAL</AlertDialogTitle>
+        </AlertDialogHeader>
         <FieldSet>
           <FieldGroup>
             <Field>
